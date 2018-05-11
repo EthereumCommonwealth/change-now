@@ -13,3 +13,14 @@
  
  -->
  
+
+## Usage
+
+1. env variables
+  * apiKey
+1. `yarn`  
+1. `yarn start`
+
+## Test
+
+`yarn test`
