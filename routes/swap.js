@@ -3,6 +3,8 @@ const router = express.Router();
 
 const request = require('request-promise');
 
+const {middleware} = require('apicache');
+
 const apiKey = process.env.apiKey;
 
 
@@ -27,10 +29,10 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/currencies', function (req, res, next) {
+router.get('/currencies', middleware('1 hour'), function (req, res, next) {
 
 
-    const options_ = Object.assign({}, options, {uri: `${uri}/currencies`});
+    const options_ = Object.assign({}, options, {uri: `${uri}currencies`});
 
     request(options_)
         .then(result => res.status(200).json(result))

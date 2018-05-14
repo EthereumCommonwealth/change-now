@@ -18,6 +18,10 @@ ajv@^5.1.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
+apicache@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/apicache/-/apicache-1.2.1.tgz#765cec58aae5f48a9c71007d035f4110aa6fbeaf"
+
 array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
