@@ -9,40 +9,51 @@ var app = require('./app');
 const should = chai.should;
 
 
-describe('Test API', function () {
-    describe('test()', function () {
-        it('should test', function (done) {
-            request(app)
-                .get('/swap')
-                .query({})
-                .expect('Content-Type', /json/)
-                .expect(200)
-                .end(function (err, res) {
-                    expect(err).to.equal(null);
-                    expect(res.body).to.equal('respond with a resource');
-                    done();
-                });
-        });
+describe('test()', function () {
+    it('return 200', function (done) {
+        request(app)
+            .get('/swap')
+            .query({})
+            .expect('Content-Type', /json/)
+            .expect(200, done)
 
-        it('should get coins', function () {
+    });
 
-            request(app)
-                .get('/swap/currencies')
-                .expect('Content-Type', /json/)
-                .expect(200)
-                .end((err, res) => {
+    it('get currencies', function (done) {
 
-                    expect(err).to.equal(null);
+        request(app)
+            .get('/swap/currencies')
+            .expect('Content-Type', /json/)
+            .expect(200, done)
 
+    });
 
-                })
-        })
+    it('should list transactions', function(done) {
 
-        it('should return 404', function (done) {
-            request(app)
-                .get('/does/not/exist')
-                .query({})
-                .expect(404, done);
-        });
+        request(app)
+            .get('/swap/transactions')
+            .expect(200, done);
+    });
+
+    it('should get tx by id', function (done) {
+
+        const id = 'b3c25544d5a034';
+        request(app)
+            .get('/swap/transactions/' + id)
+            .expect(200, done);
+    });
+
+    it('should get min exchange amount', function (done) {
+
+        request(app)
+            .get('/swap/min-amount/etc/btc')
+            .expect(200, done);
+    });
+
+    it('should return 404', function (done) {
+        request(app)
+            .get('/does/not/exist')
+            .query({})
+            .expect(404, done);
     });
 });
