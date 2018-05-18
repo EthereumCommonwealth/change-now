@@ -27,10 +27,7 @@ const options = {
 };
 
 
-router.get('/', middleware('30 days'), (req, res) => res.json('hi'));
-
-
-router.get('/currencies', middleware('1 hour'), function (req, res, next) {
+router.get('/currencies', middleware('1 hour'), function (req, res) {
 
 
     const qs = {
@@ -66,7 +63,7 @@ router.get('/min-amount/:from/:to', (req, res) => {
 
     const {from, to} = req.params;
 
-    const options_ = Object.assign({}, options, {uri: `${uri}min-amount/${from}_${to}`});
+    const options_ = Object.assign({}, options, {uri: `${uri}min-amount/${from.toLowerCase()}_${to.toLowerCase()}`});
 
 
     request(options_)
