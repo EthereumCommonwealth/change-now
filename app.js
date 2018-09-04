@@ -1,13 +1,17 @@
-var createError = require('http-errors');
-var express = require('express');
-var logger = require('morgan');
-var cors = require('cors');
 
-var swapRouter = require('./routes');
+const createError = require('http-errors');
+const express = require('express');
+const logger = require('morgan');
+const cors = require('cors');
+const compression = require('compression');
+const helmet = require('helmet');
 
-var app = express();
+const swapRouter = require('./routes');
 
+const app = express();
 
+app.use(helmet());
+app.use(compression());
 app.use(cors());
 
 // view engine setup
