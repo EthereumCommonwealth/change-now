@@ -1,24 +1,17 @@
 'use strict';
 
+require('dotenv').load();
+
 var chai = require('chai').use(require('chai-as-promised'));
 var expect = chai.expect;
 var request = require('supertest');
 
-var app = require('./app');
+var app = require('../app');
 
 const should = chai.should;
 
 
 describe('test()', function () {
-    it('return 200', function (done) {
-        request(app)
-            .get('/swap')
-            .query({})
-            .expect('Content-Type', /json/)
-            .expect(200, done)
-
-    });
-
     it('get currencies', function (done) {
 
         request(app)
@@ -28,12 +21,13 @@ describe('test()', function () {
 
     });
 
-    it('should list transactions', function(done) {
+    it('should list transactions', function (done) {
 
         request(app)
             .get('/swap/transactions')
             .expect(200, done);
     });
+
 
     it('should get tx by id', function (done) {
 
